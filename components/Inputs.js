@@ -36,7 +36,9 @@ export default function Inputs({ value, setValues, index }) {
         }}
       />
       <div className="flex gap-2">
-        <label htmlFor={`dvipuse${index}`}>Dvipuse</label>
+        <label htmlFor={`dvipuse${index}`} className="select-none">
+          Dvipuse
+        </label>
         <input
           type="checkbox"
           checked={value?.double}
@@ -44,6 +46,20 @@ export default function Inputs({ value, setValues, index }) {
           className="w-5"
           onChange={(e) => {
             changeHandler(e.target.checked, "double");
+          }}
+        />
+      </div>
+      <div className="flex gap-2">
+        <label htmlFor={`gates${index}`} className="select-none">
+          vartai
+        </label>
+        <input
+          type="checkbox"
+          checked={value?.gates}
+          id={`gates${index}`}
+          className="w-5"
+          onChange={(e) => {
+            changeHandler(e.target.checked, "gates");
           }}
         />
       </div>

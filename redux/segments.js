@@ -10,6 +10,7 @@ const valuesObject = {
   segmentsAlt: "",
   wantedSpace: "",
   double: false,
+  gates: false,
 };
 
 const initialState = {
@@ -37,6 +38,8 @@ export const segmentsSlice = createSlice({
         state.values[action.payload.index].ilgis = action.payload.value;
       } else if (action.payload.parameter === "aukstis") {
         state.values[action.payload.index].aukstis = action.payload.value;
+      } else if (action.payload.parameter === "gates") {
+        state.values[action.payload.index].gates = action.payload.value;
       } else {
         state.values[action.payload.index].wantedSpace = action.payload.value;
       }
@@ -66,23 +69,27 @@ export const segmentsSlice = createSlice({
 
         let length = state.values[action.payload.index].ilgis * 100;
 
+        let segments = Math.round(length / (11 + space));
+
+        //asigns segments
+        state.values[action.payload.index].segments = state.values[
+          action.payload.index
+        ].double
+          ? segments + segments - 1
+          : segments;
+
+        //count spaces
+        let spacesTemp = ((length - segments * 11) / (segments - 1)).toFixed(2);
+
         if (state.values[action.payload.index].double) {
-          length = length * 2;
+          const spaceBack = (
+            (length - (segments - 1) * 11 - spacesTemp * (segments - 2)) /
+            2
+          ).toFixed(2);
+
+          spacesTemp = `${spacesTemp} || ${spaceBack} `;
         }
-
-        let segmentCount = length / (11 + space);
-
-        if (state.values[action.payload.index].double) {
-          segmentCount = segmentCount + 1;
-        }
-
-        const segments = Math.round(segmentCount);
-        state.values[action.payload.index].segments = segments;
-
-        state.values[action.payload.index].space = (
-          (length - Number(state.values[action.payload.index].segments) * 11) /
-          (Number(state.values[action.payload.index].segments) - 1)
-        ).toFixed(2);
+        state.values[action.payload.index].space = spacesTemp;
 
         // count alt segments
         const segmentsAlt1 = segments - 1;
@@ -112,7 +119,21 @@ export const segmentsSlice = createSlice({
           segmentsAlt = segmentsAlt2;
         }
 
-        state.values[action.payload.index].segmentsAlt = segmentsAlt;
+        state.values[action.payload.index].segmentsAlt = state.values[
+          action.payload.index
+        ].double
+          ? segmentsAlt + segmentsAlt - 1
+          : segmentsAlt;
+
+        if (state.values[action.payload.index].double) {
+          const spaceBack = (
+            (length - (segmentsAlt - 1) * 11 - spaceAlt * (segmentsAlt - 2)) /
+            2
+          ).toFixed(2);
+
+          spaceAlt = `${spaceAlt} || ${spaceBack} `;
+        }
+
         state.values[action.payload.index].spaceAlt = spaceAlt;
       }
     },
