@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import CalculatedData from "./CalculatedData";
 import { useSelector } from "react-redux";
+import DataElement from "./DataElement";
 
 export default function ShowData() {
   const values = useSelector((state) => state.segments.values);
+  const type = useSelector((state) => state.info.type);
 
   const totalM2 = values.reduce(
     (acc, item) => Number(acc) + Number(item.m2),
@@ -45,30 +46,32 @@ export default function ShowData() {
   });
 
   return (
-    <div className="flex ">
-      <div className="flex flex-col gap-4 min-w-[900px]">
+    <div className="flex flex-col gap-8">
+      <div className="grid grid-cols-2 gap-2 text-lg">
+        <DataElement>Viso segmentu: {values.length}</DataElement>
+
+        {type !== "Dija" && type !== "Dile" && (
+          <DataElement>Viso kvadratu: {totalM2.toFixed(2)}</DataElement>
+        )}
+
+        <DataElement>Viso tvorlenciu: {totalSegments}</DataElement>
+        <DataElement>Viso tvorlenciu Alt: {totalSegmentsAlt}</DataElement>
+        <DataElement>Viso skersiniu: {totalHorizontals * 2}</DataElement>
+        <DataElement>
+          Viso skersiniu laikikliu: {totalHorizontals * 4}
+        </DataElement>
+        <DataElement>Viso vartu stulpu: {totalGateVerticals}</DataElement>
+        <DataElement>Viso stulpu: {totalVerticals}</DataElement>
+        <DataElement>Viso borteliu: {totalCurbs}</DataElement>
+        <DataElement>Viso borteliu laikikliu: {totalCurbs * 2}</DataElement>
+        <DataElement>
+          Viso savisriegiu: {totalSegments * 4} - {totalSegmentsAlt * 4}
+        </DataElement>
+      </div>
+      <div className="flex flex-col gap-4 ">
         {values?.map((item, index) => (
           <CalculatedData key={index} index={index} data={item} />
         ))}
-      </div>
-      <div className="flex flex-col gap-2 text-lg">
-        <div className="border-b">Viso segmentu: {values.length}</div>
-        <div className="border-b">Viso kvadratu: {totalM2.toFixed(2)}</div>
-        <div className="border-b">Viso tvorlenciu: {totalSegments}</div>
-        <div className="border-b">Viso tvorlenciu Alt: {totalSegmentsAlt}</div>
-        <div className="border-b">Viso skersiniu: {totalHorizontals * 2}</div>
-        <div className="border-b">
-          Viso skersiniu laikikliu: {totalHorizontals * 4}
-        </div>
-        <div className="border-b">Viso stulpu: {totalVerticals}</div>
-        <div className="border-b">Viso borteliu: {totalCurbs}</div>
-        <div className="border-b">
-          Viso borteliu laikikliu: {totalCurbs * 2}
-        </div>
-        <div className="border-b">Viso vartu stulpu: {totalGateVerticals}</div>
-        <div className="border-b">
-          Viso savisriegiu: {totalSegments * 4} - {totalSegmentsAlt * 4}
-        </div>
       </div>
     </div>
   );

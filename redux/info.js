@@ -5,10 +5,10 @@ const initialState = {
   adress: "",
   tel: "",
   email: "",
-  type: "",
-  metal: "",
-  color: "",
-  width: "",
+  type: "Dija",
+  metal: "nzn",
+  color: "7016",
+  width: "11 cm",
 };
 
 export const infoSlice = createSlice({

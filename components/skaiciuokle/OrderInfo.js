@@ -2,8 +2,14 @@
 
 import Input from "../Input";
 import Button from "../Button";
+import SelectComponent from "../SelectComponent";
 import { infoActions } from "@/Components/redux/info";
 import { useSelector, useDispatch } from "react-redux";
+
+const TYPES = ["Dija", "Dile", "Rombas"];
+const METALS = ["kazkoks", "kazkoks2", "kazkoks3"];
+const COLORS = ["7016", "8017", "8019"];
+const SIZES = ["60 cm", "40 cm", "11 cm"];
 
 export default function OrderInfo() {
   const client = useSelector((state) => state.info.client);
@@ -61,34 +67,30 @@ export default function OrderInfo() {
         </Button>
       </div>
       <div className="flex flex-col gap-1">
-        <Input
-          placeholder="Tvoros tipas"
+        <SelectComponent
+          data={TYPES}
           value={type}
-          type="text"
           setValue={(v) => {
             dispatch(infoActions.addType(v));
           }}
         />
-        <Input
-          placeholder="Skarda"
+        <SelectComponent
+          data={METALS}
           value={metal}
-          type="text"
           setValue={(v) => {
             dispatch(infoActions.addMetal(v));
           }}
         />
-        <Input
-          placeholder="Spalva"
+        <SelectComponent
+          data={COLORS}
           value={color}
-          type="text"
           setValue={(v) => {
             dispatch(infoActions.addColor(v));
           }}
         />
-        <Input
-          placeholder="Profilio plotis cm"
+        <SelectComponent
+          data={SIZES}
           value={width}
-          type="number"
           setValue={(v) => {
             dispatch(infoActions.addWidth(v));
           }}

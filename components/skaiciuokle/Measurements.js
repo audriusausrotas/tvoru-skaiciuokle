@@ -24,7 +24,7 @@ export default function Measurements() {
   }
 
   return (
-    <div className="flex flex-col items-start gap-1 ">
+    <div className="flex flex-col gap-1 ">
       {segments?.map((item, index) => (
         <Inputs
           key={index}
