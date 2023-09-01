@@ -1,71 +1,73 @@
 "use client";
 
 import CalculatedData from "./CalculatedData";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { calculationsActions } from "@/Components/redux/calculations";
 import DataElement from "./DataElement";
+import { useEffect } from "react";
 
 export default function ShowData() {
   const values = useSelector((state) => state.segments.values);
   const type = useSelector((state) => state.info.type);
 
-  const totalM2 = values.reduce(
-    (acc, item) => Number(acc) + Number(item.m2),
-    0
+  const segmentai = useSelector((state) => state.calculations.segmentai);
+  const m2 = useSelector((state) => state.calculations.m2);
+  const m = useSelector((state) => state.calculations.m);
+  const tvorlentes = useSelector((state) => state.calculations.tvorlentes);
+  const tvorlentesAlt = useSelector(
+    (state) => state.calculations.tvorlentesAlt
   );
-
-  const totalSegments = values.reduce(
-    (acc, item) => Number(acc) + Number(item.segments),
-    0
+  const skersiniai = useSelector((state) => state.calculations.skersiniai);
+  const skersiniuLaikikliai = useSelector(
+    (state) => state.calculations.skersiniuLaikikliai
   );
-  const totalSegmentsAlt = values.reduce(
-    (acc, item) => Number(acc) + Number(item.segmentsAlt),
-    0
+  const stulpai = useSelector((state) => state.calculations.stulpai);
+  const vartuStulpai = useSelector((state) => state.calculations.vartuStulpai);
+  const borteliai = useSelector((state) => state.calculations.borteliai);
+  const borteliuLaikikliai = useSelector(
+    (state) => state.calculations.borteliuLaikikliai
   );
+  const kniedes = useSelector((state) => state.calculations.kniedes);
+  const kniedesAlt = useSelector((state) => state.calculations.kniedesAlt);
+  const kojos = useSelector((state) => state.calculations.kojos);
+  const apkaustai = useSelector((state) => state.calculations.apkaustai);
 
-  let totalHorizontals = 0;
-  let totalVerticals = 1;
-  let totalGateVerticals = 0;
-  let totalCurbs = 0;
+  const dispatch = useDispatch();
 
-  let isTogether = false;
-  values.forEach((item) => {
-    if (!item.gates) {
-      totalHorizontals++;
-      totalVerticals++;
-      totalCurbs++;
-      isTogether = false;
-    } else {
-      if (!isTogether) {
-        totalVerticals--;
-        totalGateVerticals += 2;
-      } else {
-        totalGateVerticals++;
-      }
-      isTogether = true;
-    }
-  });
+  useEffect(() => {
+    dispatch(calculationsActions.addData(values));
+  }, [values]);
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid grid-cols-2 gap-2 text-lg">
-        <DataElement>Viso segmentu: {values.length}</DataElement>
-
-        {type !== "Dija" && type !== "Dile" && (
-          <DataElement>Viso kvadratu: {totalM2.toFixed(2)}</DataElement>
-        )}
-
-        <DataElement>Viso tvorlenciu: {totalSegments}</DataElement>
-        <DataElement>Viso tvorlenciu Alt: {totalSegmentsAlt}</DataElement>
-        <DataElement>Viso skersiniu: {totalHorizontals * 2}</DataElement>
+      <div className="flex flex-col gap-2 text-lg ">
+        <div className="flex flex-wrap w-full gap-2 ">
+          <DataElement>Segmentų: {segmentai}</DataElement>
+          {type !== "Alba" && type !== "Dilė" && (
+            <DataElement>Kv.m: {m2}</DataElement>
+          )}
+          {(type === "Alba" || type === "Dilė") && (
+            <DataElement>Metrai: {m}</DataElement>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-2 ">
+          <DataElement>Tvorlentės: {tvorlentes}</DataElement>
+          <DataElement>Tvorlentės Alt: {tvorlentesAlt}</DataElement>
+        </div>
+        <div className="flex flex-wrap w-full gap-2 ">
+          <DataElement>Skersiniai: {skersiniai}</DataElement>
+          <DataElement>Skersinių laikikliai: {skersiniuLaikikliai}</DataElement>
+        </div>
+        <div className="flex flex-wrap w-full gap-2 ">
+          <DataElement>Stulpai: {stulpai}</DataElement>
+          <DataElement>Vartų stulpai: {vartuStulpai}</DataElement>
+        </div>
+        <div className="flex flex-wrap w-full gap-2 ">
+          <DataElement>Borteliai: {borteliai}</DataElement>
+          <DataElement>Bortelių laikikliai: {borteliuLaikikliai}</DataElement>
+        </div>
         <DataElement>
-          Viso skersiniu laikikliu: {totalHorizontals * 4}
-        </DataElement>
-        <DataElement>Viso vartu stulpu: {totalGateVerticals}</DataElement>
-        <DataElement>Viso stulpu: {totalVerticals}</DataElement>
-        <DataElement>Viso borteliu: {totalCurbs}</DataElement>
-        <DataElement>Viso borteliu laikikliu: {totalCurbs * 2}</DataElement>
-        <DataElement>
-          Viso savisriegiu: {totalSegments * 4} - {totalSegmentsAlt * 4}
+          Savisriegiai: {kniedes} - {kniedesAlt}
         </DataElement>
       </div>
       <div className="flex flex-col gap-4 ">

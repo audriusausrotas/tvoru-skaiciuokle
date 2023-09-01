@@ -1,68 +1,63 @@
 import Input from "./Input";
+import Checkbox from "./Checkbox";
 
-export default function Inputs({ value, setValues, index }) {
+export default function Inputs({
+  value,
+  setValues,
+  index,
+  onEnter,
+  firstInputRef,
+}) {
   function changeHandler(v, parameter) {
     setValues(v, parameter);
   }
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center gap-5">
       <div className="w-4">{index + 1}</div>
       <Input
-        placeholder="ilgis m"
         value={value?.ilgis}
         type="number"
-        short={true}
+        w={true}
+        onEnter={onEnter}
         setValue={(v) => {
           changeHandler(v, "ilgis");
         }}
+        firstInputRef={firstInputRef}
       />
       <Input
-        placeholder="aukstis m"
         value={value?.aukstis}
         type="number"
-        short={true}
+        w={true}
+        onEnter={onEnter}
         setValue={(v) => {
           changeHandler(v, "aukstis");
         }}
       />
       <Input
-        placeholder="Tarpas cm"
         value={value?.wantedSpace}
         type="number"
-        short={true}
+        w={true}
+        onEnter={onEnter}
+        def={2}
         setValue={(v) => {
           changeHandler(v, "tarpas");
         }}
       />
-      <div className="flex gap-2">
-        <label htmlFor={`dvipuse${index}`} className="select-none">
-          Dvipuse
-        </label>
-        <input
-          type="checkbox"
-          checked={value?.double}
-          id={`dvipuse${index}`}
-          className="w-5"
-          onChange={(e) => {
-            changeHandler(e.target.checked, "double");
-          }}
-        />
-      </div>
-      <div className="flex gap-2">
-        <label htmlFor={`gates${index}`} className="select-none">
-          vartai
-        </label>
-        <input
-          type="checkbox"
-          checked={value?.gates}
-          id={`gates${index}`}
-          className="w-5"
-          onChange={(e) => {
-            changeHandler(e.target.checked, "gates");
-          }}
-        />
-      </div>
+      <Checkbox
+        label="Dvipusė"
+        checked={value.double}
+        id={`dvipuse${index}`}
+        changeHandler={changeHandler}
+        name="double"
+      />
+      <Checkbox
+        label="Vartai"
+        checked={value.gates}
+        id={`gates${index}`}
+        changeHandler={changeHandler}
+        name="gates"
+      />
     </div>
   );
 }

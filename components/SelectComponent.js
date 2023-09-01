@@ -9,7 +9,7 @@ export default function SelectComponent({ data, value, setValue }) {
 
   return (
     <div
-      className="relative flex items-center justify-between w-64 px-4 py-1 border border-black select-none hover:cursor-pointer"
+      className="relative flex items-center justify-between w-64 px-4 py-1 border border-black rounded-sm select-none hover:cursor-pointer"
       onClick={() => {
         setOpen((prev) => !prev);
       }}

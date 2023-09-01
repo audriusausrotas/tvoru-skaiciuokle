@@ -8,7 +8,7 @@ const valuesObject = {
   spaceAlt: "",
   segments: "",
   segmentsAlt: "",
-  wantedSpace: "",
+  wantedSpace: 2,
   double: false,
   gates: false,
 };
@@ -30,6 +30,10 @@ export const segmentsSlice = createSlice({
       state.segments = [1];
       state.values = [valuesObject];
     },
+    copyLast: (state) => {
+      state.segments.push(1);
+      state.values.push(state.values[state.values.length - 1]);
+    },
     addValues: (state, action) => {
       // updating values
       if (action.payload.parameter === "double") {
@@ -50,8 +54,9 @@ export const segmentsSlice = createSlice({
         state.values[action.payload.index].aukstis !== ""
       ) {
         state.values[action.payload.index].m2 = (
-          state.values[action.payload.index].ilgis *
-          state.values[action.payload.index].aukstis
+          (state.values[action.payload.index].ilgis *
+            state.values[action.payload.index].aukstis) /
+          10000
         ).toFixed(2);
       } else {
         state.values[action.payload.index].m2 = "";
@@ -60,14 +65,14 @@ export const segmentsSlice = createSlice({
       //counting segments and spaces
       if (state.values[action.payload.index].ilgis !== "") {
         // sets space between segments
-        let space = state.values[action.payload.index].double ? 8 : 3;
+        let space = state.values[action.payload.index].double ? 8 : 2;
 
         if (state.values[action.payload.index].wantedSpace !== "") {
           space = Number(state.values[action.payload.index].wantedSpace);
         }
         //count segments
 
-        let length = state.values[action.payload.index].ilgis * 100;
+        let length = state.values[action.payload.index].ilgis;
 
         let segments = Math.round(length / (11 + space));
 
@@ -99,7 +104,7 @@ export const segmentsSlice = createSlice({
 
         //count alt spaces
         const spaceAlt1 = (
-          (Number(state.values[action.payload.index].ilgis) * 100 -
+          (Number(state.values[action.payload.index].ilgis) -
             Number(segmentsAlt1) * 11) /
           (Number(segmentsAlt1) - 1)
         ).toFixed(2);
@@ -140,7 +145,7 @@ export const segmentsSlice = createSlice({
   },
 });
 
-export const { addSegment, addValues, clearAll, addWantedSpace } =
+export const { addSegment, addValues, clearAll, addWantedSpace, copyLast } =
   segmentsSlice.actions;
 
 export default segmentsSlice.reducer;

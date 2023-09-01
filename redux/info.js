@@ -5,10 +5,12 @@ const initialState = {
   adress: "",
   tel: "",
   email: "",
-  type: "Dija",
+  type: "Alba",
   metal: "nzn",
   color: "7016",
   width: "11 cm",
+  montavimas: true,
+  vartai: false,
 };
 
 export const infoSlice = createSlice({
@@ -39,15 +41,24 @@ export const infoSlice = createSlice({
     addWidth: (state, action) => {
       state.width = action.payload;
     },
+    changeMontavimas: (state, action) => {
+      state.montavimas = action.payload;
+    },
+    changeVartai: (state, action) => {
+      state.vartai = action.payload;
+    },
+
     clearAll: (state) => {
       state.client = "";
       state.adress = "";
       state.tel = "";
       state.email = "";
-      state.type = "";
-      state.metal = "";
-      state.color = "";
-      state.width = "";
+      state.type = "Alba";
+      state.metal = "nzn";
+      state.color = "7016";
+      state.width = "11 cm";
+      state.montavimas = false;
+      state.vartai = false;
     },
   },
 });

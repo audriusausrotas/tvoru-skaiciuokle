@@ -4,12 +4,14 @@ import OrderInfo from "../components/skaiciuokle/OrderInfo";
 
 export default function Home() {
   return (
-    <div className="flex gap-20 p-10">
-      <div className="flex flex-col min-w-[30%] max-w-4xl  gap-10">
+    <div className="flex flex-wrap justify-center gap-20 p-10">
+      <div className="flex flex-col gap-10">
         <OrderInfo />
+        <Measurements />
+      </div>
+      <div className="flex flex-col">
         <ShowData />
       </div>
-      <Measurements />
     </div>
   );
 }
