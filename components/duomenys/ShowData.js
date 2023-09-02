@@ -32,6 +32,26 @@ export default function ShowData() {
   const kojos = useSelector((state) => state.calculations.kojos);
   const apkaustai = useSelector((state) => state.calculations.apkaustai);
 
+  let kojosTotal = 0;
+  let kojosVnt = 0;
+
+  if (kojos && kojos.length > 0) {
+    kojos.forEach((item) => {
+      kojosTotal += Number(item.aukstis);
+      kojosVnt += Number(item.vnt);
+    });
+  }
+
+  let apkaustaiTotal = 0;
+  let apkaustaiVnt = 0;
+
+  if (apkaustai && apkaustai.length > 0) {
+    apkaustai.forEach((item) => {
+      apkaustaiTotal += Number(item.aukstis);
+      apkaustaiVnt += Number(item.vnt);
+    });
+  }
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,7 +71,7 @@ export default function ShowData() {
           )}
         </div>
         <div className="flex flex-wrap gap-2 ">
-          <DataElement>Tvorlentės: {tvorlentes}</DataElement>
+          <DataElement>Tvorlentės: {tvorlentes} </DataElement>
           <DataElement>Tvorlentės Alt: {tvorlentesAlt}</DataElement>
         </div>
         <div className="flex flex-wrap w-full gap-2 ">
@@ -65,6 +85,14 @@ export default function ShowData() {
         <div className="flex flex-wrap w-full gap-2 ">
           <DataElement>Borteliai: {borteliai}</DataElement>
           <DataElement>Bortelių laikikliai: {borteliuLaikikliai}</DataElement>
+        </div>
+        <div className="flex flex-wrap w-full gap-2 ">
+          <DataElement>
+            Kojos: {kojosTotal / 100}m -- {kojosVnt}vnt
+          </DataElement>
+          <DataElement>
+            apkaustai: {apkaustaiTotal / 100}m -- {apkaustaiVnt}vnt
+          </DataElement>
         </div>
         <DataElement>
           Savisriegiai: {kniedes} - {kniedesAlt}

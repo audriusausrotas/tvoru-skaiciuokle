@@ -16,6 +16,7 @@ const initialState = {
   kniedesAlt: 0,
   kojos: 0,
   apkaustai: 0,
+  kaina: 0,
 };
 
 export const calculationsSlice = createSlice({
@@ -34,12 +35,14 @@ export const calculationsSlice = createSlice({
       let borteliai = 0;
       let kniedes = 0;
       let kniedesAlt = 0;
-      let kojos = 0;
-      let apkaustai = 0;
+      let kojos = [];
+      let apkaustai = [];
       let isTogether = false;
+      let kaina = 0;
 
       action.payload.forEach((item) => {
         if (item.ilgis) {
+          kaina += item.kaina;
           m2 = Number(m2) + Number(item.m2);
           m = (Number(m) + Number(item.aukstis) / 100).toFixed(2);
           tvorlentes = tvorlentes + item.segments;
@@ -52,6 +55,9 @@ export const calculationsSlice = createSlice({
             kniedesAlt + item.aukstis > 160
               ? tvorlentesAlt * 6
               : tvorlentesAlt * 4;
+
+          kojos.push({ aukstis: item.aukstis, vnt: 2 });
+          apkaustai.push({ aukstis: item.aukstis, vnt: 2 });
 
           if (!item.gates) {
             skersiniai = skersiniai + (item.aukstis > 160 ? 3 : 2);
@@ -88,8 +94,9 @@ export const calculationsSlice = createSlice({
       state.borteliuLaikikliai = borteliai * 2;
       state.kniedes = kniedes;
       state.kniedesAlt = kniedesAlt;
-      state.kojos = kojos;
-      state.apkaustai = apkaustai;
+      state.kojos = [...kojos];
+      state.apkaustai = [...apkaustai];
+      state.kaina = kaina;
     },
 
     clearAll: (state) => {
@@ -105,8 +112,8 @@ export const calculationsSlice = createSlice({
       state.borteliai = 0;
       state.borteliuLaikikliai = 0;
       state.kniedes = 0;
-      state.kojos = 0;
-      state.apkaustai = 0;
+      state.kojos = [];
+      state.apkaustai = [];
     },
   },
 });

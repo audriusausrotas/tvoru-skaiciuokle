@@ -13,7 +13,7 @@ export default function Inputs({
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-5">
+    <div className="flex flex-wrap items-center justify-center gap-5">
       <div className="w-4">{index + 1}</div>
       <Input
         value={value?.ilgis}

@@ -40,8 +40,8 @@ export default function OrderInfo() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-wrap gap-4 w-fit">
+    <div className="flex flex-col items-center justify-center gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-4 w-fit">
         <div className="flex flex-col gap-1">
           <Input
             placeholder="Klientas"
@@ -76,7 +76,7 @@ export default function OrderInfo() {
             }}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col items-center justify-center gap-1">
           <SelectComponent
             data={TYPES}
             value={type}
@@ -107,7 +107,7 @@ export default function OrderInfo() {
           />
         </div>
       </div>
-      <div className="flex flex-wrap items-center gap-8">
+      <div className="flex flex-wrap items-center justify-center gap-8">
         <div className="flex flex-wrap gap-6">
           <Checkbox
             label="Betonavimas"

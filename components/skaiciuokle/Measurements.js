@@ -34,7 +34,7 @@ export default function Measurements() {
   }, [segments]);
 
   return (
-    <div className="flex flex-col gap-1 ">
+    <div className="flex flex-col items-center justify-center gap-1 ">
       <div className="flex flex-wrap items-center ">
         <div className="pl-12">Ilgis cm</div>
         <div className="pl-8">Aukštis cm</div>
@@ -52,7 +52,7 @@ export default function Measurements() {
           firstInputRef={index === segments.length - 1 ? firstInputRef : null}
         />
       ))}
-      <div className="flex flex-wrap w-full gap-4 pt-2 pl-8">
+      <div className="flex flex-wrap justify-center w-full gap-4 pt-2 pl-8">
         <Button onClick={addNewHandler}>Pridėti Naują</Button>
         <Button onClick={copyHandler}>Kopijuoti Paskutinį</Button>
       </div>

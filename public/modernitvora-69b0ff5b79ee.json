@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "modernitvora",
+  "private_key_id": "69b0ff5b79eea22de488780cf8a25c8a839aa9a0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCuXNYEOhSOCOJM\nsqvjK86y3/yDpJEPDVznieiOfG+pgO+CW7p3FgOSknpxdhIzG4YBepNeRAs4jWFE\nBEVH55QYwv2cJbb4UUIOKD057oEtH4pCxZ7P0KVg5kzSBvR/RybFhXFx0kMYu78a\nyj9wA88kw8pSAHT4FXoXjC7b6ipmfeUZdxtFOBy2sMnywG6wIBeRRbz+rbijldEb\nlXmKNht1CnOBl1uJC12WZHI3AFInPeXZNH3akyq/dLLxYd2ywVz5FFbivB/L1uRD\nV8JoFbu8/O5r/JtZBWQ4aqob1Z7ZZIZgt0IkM9atbJ5O2gVEu4H8547DpTvomLh5\nK/9s3o2XAgMBAAECggEASlFUgSG2UCHWPuWq4N1zsQdKTFvw3i8Oabv8rPq551AH\nBhON4yM1a5xWZxTxxenV0LyLopKzC6wrCIAffXnlxDYcPZlPpwCPfJRHIHGZin+W\ngUZVHfOrAaW3mY+QV82eZ3Msutxpb9naJxOMPXTKLjvreM8sC++vhejgsihZYSxU\nOfBqu8qyOKzp3xQZvSx/69CT/EcTyd5xtF3PUH36ntt4fRU2HxDg8Rc5k3fi6aRO\nci2WTkAOqjz978hONV9EQGmc9Ml0/cMeqiyxgfkay/m3GiJNv+zdoVlXvHMHgGBO\nGIUZCGkL8U/rcDPuXpWqe8jiAgUvH/eluTn6fs07TQKBgQDkdHfSmi7nNqRpz96L\nV8oR7dEowdvfzu/MU/tROGbpm38tJjwhTqVGUnGtHLIgi7dWpp+S80/GLpzI//rM\nMXzDfYCeAAXDAtB2q7if9OxhYc9qkn0T2o0a0v7LZjuKGxn6GPXC4RUd3pYewvbp\nzxYPjFPdWAmpH1A+SNhsbxw9mwKBgQDDYr6tH8xqU4VSFRcCBWhh6glnuxy7A5jE\nFXJETjkqCwOLKOc89OYchrTcgxNlB6u2QeG5+GlZUW6UIdEtLQgUbwSmX7yn7uNC\ncB0+IUwpjJo9JC55TO3v4iJBHKH6D7dQYJlwJSMgeZJNTgp2zZ8rK+haaGAbflnE\n6edVV8RttQKBgQCmgPBX0UIACEY6TGNhYYGIIbFAqFHtQ7BoVokjwBzZhBhjuqs2\nh1BT+YCacACvUcU05UoGW0k4Iv7oTBDpQ+Qvwse74D5SzDlNVIjCJEsoCpaWkN+S\nWcZf14oWipM4a9o5+nkcKNowI+t7zhMRg3oLqPXyq9iWp5jfXE5IcY6+owKBgQCu\nv8dYYgNa6Z5pHpG4bgvA3yhQTWrR3NKqNaBAdVHtR3KA6TGANG0HAHgMbXNQPf8X\nAG+Z/BKFHy7ucBx88jSyyeR3xVKfRCqgRlPxOKi81JMysgSa2vJIRZFreOdqFtpW\nmj9BrQVwyyrN10nGnfuJCjlDeuzSSjyRwL31d40orQKBgF2U7kQLJ8xX5veyndqF\nBl56b+qVMiDGYHap0oWpyD5/V7tJX4Z4XTsmgJkZnqGTJbKbh36Gtns8kGcDyL7J\n1lDCt3jBbh7GpR+bU3GxhB8iqd1I+/QKWUssmWg5UAu0E1srqLqKjJF6Jr3xqP3u\nFNkMoKiV+TsYjf5uroFcGXi6\n-----END PRIVATE KEY-----\n",
+  "client_email": "audrius@modernitvora.iam.gserviceaccount.com",
+  "client_id": "109927053445568016764",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/audrius%40modernitvora.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

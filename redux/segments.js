@@ -11,6 +11,7 @@ const valuesObject = {
   wantedSpace: 2,
   double: false,
   gates: false,
+  kaina: 0,
 };
 
 const initialState = {
@@ -61,6 +62,9 @@ export const segmentsSlice = createSlice({
       } else {
         state.values[action.payload.index].m2 = "";
       }
+
+      state.values[action.payload.index].kaina =
+        (state.values[action.payload.index].aukstis / 100) * 1;
 
       //counting segments and spaces
       if (state.values[action.payload.index].ilgis !== "") {
